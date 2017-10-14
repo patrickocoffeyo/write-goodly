@@ -1,16 +1,55 @@
 {
   "name": "write-goodly",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "private": true,
+  "repository": "git@github.com:patrickocoffeyo/write-goodly.git",
+  "homepage": "https://github.com/patrickocoffeyo/write-goodly/blob/master/README.md",
+  "author": "Patrick Coffey <patrickcoffey48@gmail.com>",
+  "license": "GPL-3.0",
+  "contributors": [
+    {
+      "name": "Patrick Coffey",
+      "email": "patrickcoffey48@gmail.com"
+    }
+  ],
+  "engines": {
+    "node": ">=8.4.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
   "dependencies": {
+    "eslint-plugin-react": "^7.4.0",
+    "material-ui": "^1.0.0-beta.16",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14"
+    "react-scripts": "1.0.14",
+    "write-good": "^0.11.3"
   },
   "scripts": {
+    "lint": "eslint --ext .jsx,.js src",
+    "prettier": "prettier --single-quote --write \"src/**/*.{js,jsx}\"",
+    "precommit": "lint-staged && yarn lint",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^16.0.0",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^2.3.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.2.3",
+    "prettier": "^1.7.4"
   }
 }

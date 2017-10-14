@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Write Goodly",
+  "name": "Lil web app that helps you write goodly.",
   "icons": [
     {
       "src": "favicon.ico",
