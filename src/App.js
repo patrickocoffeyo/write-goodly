@@ -6,6 +6,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import writeGood from 'write-good';
+import { indigo } from 'material-ui/colors';
 import {
   Typography,
   AppBar,
@@ -41,12 +42,14 @@ class App extends Component {
       main: PropTypes.string,
       button: PropTypes.string,
       wrapper: PropTypes.string,
-      report: PropTypes.string
+      report: PropTypes.string,
+      chip: PropTypes.string
     }).isRequired
   };
 
   state = {
-    report: []
+    report: [],
+    selectedIssue: null
   };
 
   /**
@@ -61,10 +64,38 @@ class App extends Component {
    */
   fetchReport() {
     const { classes: { chip } } = this.props;
+    const { selectedIssue } = this.state;
     return this.state.report.map((item, index) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <Chip label={item.reason} key={index} className={chip} />
+      <Chip
+        className={chip}
+        label={item.reason}
+        // eslint-disable-next-line react/no-array-index-key
+        key={index}
+        style={{
+          backgroundColor: selectedIssue === index ? indigo[500] : null,
+          color: selectedIssue === index ? 'white' : null
+        }}
+        onClick={() => this.selectIssue(index)}
+      />
     ));
+  }
+
+  /**
+   * Selects and highlights an issue.
+   *
+   * @param {int} selectedIssue - Number referring to the index of the item
+   *                              that should be selected.
+   */
+  selectIssue(selectedIssue) {
+    this.setState({ selectedIssue });
+
+    // Highlight the text in the textarea.
+    const textarea = document.getElementById('app-form-input');
+    const report = this.state.report[selectedIssue] || false;
+    if (report && textarea) {
+      textarea.setSelectionRange(report.index, report.index + report.offset);
+      textarea.focus();
+    }
   }
 
   /**
@@ -87,7 +118,7 @@ class App extends Component {
               <TextField
                 multiline
                 fullWidth
-                id="App-form-input"
+                id="app-form-input"
                 label="Insert Text Here"
                 onChange={event => this.handleChange(event)}
               />
