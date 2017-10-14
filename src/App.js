@@ -17,6 +17,8 @@ import {
   Grid
 } from 'material-ui';
 
+import './App.css';
+
 const styles = theme => ({
   main: {
     marginTop: 90
@@ -120,6 +122,12 @@ class App extends Component {
                 fullWidth
                 id="app-form-input"
                 label="Insert Text Here"
+                style={{
+                  '::selection': {
+                    backgroundColor: indigo[500],
+                    color: 'white'
+                  }
+                }}
                 onChange={event => this.handleChange(event)}
               />
             </form>
