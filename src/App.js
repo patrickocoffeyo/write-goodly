@@ -12,7 +12,8 @@ import {
   Toolbar,
   TextField,
   withStyles,
-  Chip
+  Chip,
+  Grid
 } from 'material-ui';
 
 const styles = theme => ({
@@ -80,22 +81,22 @@ class App extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <section id="app-body" className={classes.main}>
-          <form id="app-form">
-            <TextField
-              multiline
-              fullWidth
-              id="App-form-input"
-              label="Insert Text Here"
-              onChange={event => this.handleChange(event)}
-              rows={6}
-            />
-          </form>
-
-          <section id="app-report" className={classes.report}>
+        <Grid container id="app-body" className={classes.main}>
+          <Grid item xs={12} sm={6}>
+            <form id="app-form">
+              <TextField
+                multiline
+                fullWidth
+                id="App-form-input"
+                label="Insert Text Here"
+                onChange={event => this.handleChange(event)}
+              />
+            </form>
+          </Grid>
+          <Grid item xs={12} sm={6} id="app-report" className={classes.report}>
             {this.fetchReport()}
-          </section>
-        </section>
+          </Grid>
+        </Grid>
       </div>
     );
   }
